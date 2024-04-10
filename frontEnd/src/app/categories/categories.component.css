@@ -1,0 +1,27 @@
+.card-title{
+    text-align: center;
+    margin-top:2rem;
+    margin-bottom: 0;
+    
+}
+.card-body{
+    width: 8rem;
+}
+/* @media(max-width:767px){
+    .card-body{
+        width: 6rem;
+    }
+} */
+.card{
+    background-color: #FCFAFA;
+    display: inline-block;
+    margin: 0 10px; 
+}
+.card:hover{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.card-container {
+    overflow-x: auto;
+    white-space: nowrap;
+  }

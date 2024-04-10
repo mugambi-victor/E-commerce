@@ -1,0 +1,9 @@
+.brand{
+    font-family: "Merienda", cursive;
+}
+
+@media(max-width:480px){
+    .mine{
+        visibility: hidden;
+    }
+}
