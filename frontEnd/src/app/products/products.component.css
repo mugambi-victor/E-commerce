@@ -4,7 +4,7 @@
 
 
 .nowrap {
-    width: 9em;
+    width: 200px;
     text-wrap: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -25,4 +25,11 @@
         flex: 0 0 auto; /* Maintain the original size of the cards */
         margin-right: 1em;
     }
+}
+.card{
+    width:300px;
+  
+}
+.card-img{
+    height: 200px !important;
 }

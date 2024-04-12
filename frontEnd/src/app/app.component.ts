@@ -6,6 +6,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { SlideshowComponent } from './slideshow/slideshow.component';
 import { ProductsComponent } from './products/products.component';
+import { HeaderComponent } from './header/header.component';
 
 declare global {
   interface Window {
@@ -17,7 +18,7 @@ declare global {
   standalone:true,
   selector: 'app-root',
  
-  imports: [RouterOutlet, CarouselComponent, CategoriesComponent, SlideshowComponent, RouterModule, ProductsComponent],
+  imports: [RouterOutlet, CarouselComponent, CategoriesComponent, SlideshowComponent, RouterModule, ProductsComponent, HeaderComponent],
 
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
