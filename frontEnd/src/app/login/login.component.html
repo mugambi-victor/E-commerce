@@ -6,20 +6,22 @@
                 <div class="shadow-md rounded-lg p-6 bg-[#f5f5f5] justify-center">
                     <img src="../assets/img/userlogo.png" class="h-[6rem]" style="margin-left: auto; margin-right: auto;" alt="">
                     <h2 class="text-xl mb-4 text-center dis">Welcome Back</h2>
-                    <form class="mt-auto mb-auto">
+                    <form class="mt-auto mb-auto" method="POST" [formGroup]="loginForm" (submit)="onSubmit()">
                         <div class="mb-4">
-                            <input type="email" id="email" name="email" class="form-input mt-1 block w-full px-2 py-2 rounded focus:outline-none dis_regular text-sm" placeholder="Email" required>
+                            <input type="email" id="email" formControlName="email" name="email" class="form-input mt-1 block w-full px-2 py-2 rounded focus:outline-none dis_regular text-sm" placeholder="Email" required>
                         </div>
                         <div class="mb-4">
-                            <input type="password" id="password" name="password" class="form-input mt-1 block w-full px-2 py-2 rounded focus:outline-none dis_regular text-sm" placeholder="Password">
+                            <input type="password" id="password" formControlName="password" name="password" class="form-input mt-1 block w-full px-2 py-2 rounded focus:outline-none dis_regular text-sm" placeholder="Password">
                         </div>
                         <div class="text-center ">
                             <button type="submit" class="bg-[#D52941] text-white px-4 py-2 rounded-md dis_regular justify-center text-sm" >Login</button>
-                            <p class="dis_regular my-4 text-sm "> Forgot Password? <a class="text-[#D52941]" href="">Reset Here</a> </p>
-                            <p class="dis_regular my-4"> Or </p>
-                            <a href="" class="text-[#D52941] text-sm   dis_regular">Sign up here</a>
+                        
+                           
                         </div>
                     </form>
+                        <p class="dis_regular my-4 text-sm "> Forgot Password? <a class="text-[#D52941]" href="">Reset Here</a> </p>
+                        <p class="dis_regular my-4"> Or </p>
+                        <a href="" class="text-[#D52941] text-sm   dis_regular">Sign up here</a>
                 </div>
             </div>
         </div>

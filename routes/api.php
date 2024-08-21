@@ -30,10 +30,11 @@ Route::middleware('auth:sanctum')->group(function () {
          'show', 'index'
      ]);
 });
-
+Route::resource('categories', CategoryController::class);
 Route::middleware('admin')->group(function () {
-    Route::resource('categories', CategoryController::class);
+   
     Route::resource('products', ProductController::class)->only([
         'destroy', 'store', 'update'
      ]);
 });
+Route::get('/categories/{id}', [CategoryController::class, 'getCategoryById']);

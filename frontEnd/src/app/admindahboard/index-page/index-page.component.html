@@ -1,0 +1,92 @@
+<div class="flex h-screen">
+    <!-- Sidebar -->
+    <div id="hs-offcanvas-example" class="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform hidden fixed top-0 start-0 bottom-0 z-[60] w-64 bg-white border-e border-gray-200 pt-7 pb-10 overflow-y-auto lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300 dark:[&::-webkit-scrollbar-track]:bg-neutral-700 dark:[&::-webkit-scrollbar-thumb]:bg-neutral-500 dark:bg-neutral-800 dark:border-neutral-700" role="dialog" tabindex="-1" aria-label="Sidebar">
+        <div class="px-6">
+          <a class="flex-none font-semibold text-xl text-black focus:outline-none focus:opacity-80 dark:text-white" href="#" aria-label="Brand">ProductsApp</a>
+          </div>    
+        <!-- Navigation Links -->
+        <nav class="hs-accordion-group py-6 text-gray-800 text-sm w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
+            <ul class="space-y-2 ">
+                <li><a [routerLink]="['/admindashboard']" class="block px-4  py-2 hover:bg-neutral-700 hover:text-white rounded"><i class="bi bi-house"></i> Dashboard</a></li>
+                <li><a [routerLink]="['/admindashboard/manage_categories']" class="block px-4 py-2 hover:bg-neutral-700 hover:text-white rounded"><i class="bi bi-tag"></i> Categories</a></li>
+                <!-- Products Dropdown -->
+                <div class="m-1 hs-dropdown relative inline-flex">
+                    <button id="hs-dropdown-products" type="button" class="hs-dropdown-toggle py-3 px-4 inline-flex  w-56 items-center gap-x-2 text-sm font-medium rounded-lg  border-gray-200 bg-white text-gray-800   hover:bg-neutral-700 hover:text-white focus:outline-none focus:bg-neutral-700 focus:text-white dark:bg-neutral-800 justify-between dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700">
+                     <div class="flex gap-1">
+                        <i class="bi bi-box"></i> Products
+                     </div> 
+                      <svg class="hs-dropdown-open:rotate-180 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                  
+                    <div class="hs-dropdown-menu transition-opacity duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 z-10 dark:bg-neutral-800 dark:border dark:border-neutral-700 dark:divide-neutral-700" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-products">
+                      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-neutral-700 hover:text-white dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300" href="#">
+                        Add Product
+                      </a>
+                      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-neutral-700 hover:text-white dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300" href="#">
+                        Manage Products
+                      </a>
+                      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-neutral-700 hover:text-white dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300" href="#">
+                        Downloads
+                      </a>
+                      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-neutral-700 hover:text-white dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300" href="#">
+                        Team Account
+                      </a>
+                    </div>
+                </div>
+
+                
+                
+                <!-- Orders Dropdown -->
+                <div class="m-1 hs-dropdown relative inline-flex">
+                    <button id="hs-dropdown-products" type="button" class="hs-dropdown-toggle py-3 px-4 inline-flex  w-56 items-center gap-x-2 text-sm font-medium rounded-lg  border-gray-200 bg-white text-gray-800   hover:bg-neutral-700 hover:text-white focus:outline-none focus:bg-neutral-700 focus:text-white dark:bg-neutral-800 justify-between dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700">
+                        <div class="flex gap-1">
+                            <i class="bi bi-person"></i> Orders
+                        </div> 
+                      <svg class="hs-dropdown-open:rotate-180 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                  
+                    <div class="hs-dropdown-menu transition-opacity duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 z-10 dark:bg-neutral-800 dark:border dark:border-neutral-700 dark:divide-neutral-700" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-orders">
+                      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-neutral-700 hover:text-white dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300" href="#">
+                        Pending Orders
+                      </a>
+                      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-neutral-700 hover:text-white dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300" href="#">
+                        Dispatched orders
+                      </a>
+                      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-neutral-700 hover:text-white dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300" href="#">
+                        Completed Orders
+                      </a>
+                    </div>
+                </div>
+
+                <li><a href="#" class="block px-4  py-2 hover:bg-neutral-700 hover:text-white rounded"> <i class="bi bi-graph-down"></i> Reports</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="flex-1 flex flex-col overflow-hidden ">
+        <!-- Top Navbar -->
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+              <div class="flex items-center">
+                <button type="button" class="text-gray-500 hover:text-gray-600 mr-4 lg:hidden" data-hs-overlay="#hs-offcanvas-example">
+                  <span class="sr-only">Toggle Navigation</span>
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                  </svg>
+                </button>
+                <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
+              </div>
+              <div class="flex items-center">
+                <span class="text-gray-700 mr-2">Welcome,</span>
+                <span class="font-semibold">John Doe</span>
+              </div>
+            </div>
+          </header>
+
+        <!-- Page Content -->
+        <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 rounded-lg lg:ml-64">
+          <router-outlet></router-outlet>
+        </main>
+    </div>
+</div>

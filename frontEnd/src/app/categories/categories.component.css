@@ -1,28 +1,11 @@
-.card-title{
-    text-align: center;
-    margin: 0;
-    
-}
-.card-body{
-    width: 100%;
-}
-/* @media(max-width:767px){
-    .card-body{
-        width: 6rem;
-    }
-} */
-.card{
-    background-color: #FCFAFA;
-    display: inline-block;
-    margin: 0 10px; 
-}
-.card:hover{
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+.category-container {
+  white-space: nowrap; /* Prevents the buttons from wrapping to the next line */
+  overflow-x: auto; /* Allows horizontal scrolling */
+  padding-bottom: 10px; /* Adds some space below the buttons to show the scrollbar */
+  scrollbar-width: thin; /* For Firefox: Makes the scrollbar thinner */
+  -webkit-overflow-scrolling: touch; /* For smooth scrolling on mobile devices */
 }
 
-.card-container {
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  
+.category-button {
+  flex-shrink: 0; /* Ensures the buttons don't shrink smaller than their content */
+}

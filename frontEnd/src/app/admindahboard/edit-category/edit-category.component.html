@@ -1,0 +1,69 @@
+<div class="container mx-auto p-4">
+
+    <h2 class="text-2xl font-bold mb-4">Edit Category</h2>
+    <!-- Error Alert -->
+<div *ngIf="showErrorAlert" class="space-y-5">
+  <div [ngClass]="{
+    'bg-red-50 border-t-2 border-red-500': alertType === 'error'
+  }" class="rounded-lg p-4 dark:bg-red-800/30" role="alert" tabindex="-1">
+    <div class="flex">
+      <div class="shrink-0">
+        <span [ngClass]="{
+          'border-red-100 bg-red-200 text-red-800': alertType === 'error'
+        }" class="inline-flex justify-center items-center size-8 rounded-full border-4">
+          <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+            <path d="M12 9v4"></path>
+            <path d="M12 15h.01"></path>
+          </svg>
+        </span>
+      </div>
+      <div class="ms-3">
+        <h3 class="text-gray-800 font-semibold dark:text-white">
+          {{ alertTitle }}
+        </h3>
+        <p class="text-sm text-gray-700 dark:text-neutral-400">
+          {{ errorMessage }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <form [formGroup]="editCategoryForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="categoryName">
+          Category Name
+        </label>
+        <input 
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+          id="categoryName" 
+          type="text" 
+          placeholder="Enter category name"
+          formControlName="category_name">
+        <p *ngIf="editCategoryForm.get('category_name')?.invalid && editCategoryForm.get('category_name')?.touched" value="category.name" class="text-red-500 text-xs italic">Please enter a category name.</p>
+      </div>
+      <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-bold mb-2" for="categoryDescription">
+          Category Description
+        </label>
+        <textarea 
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+          id="categoryDescription" 
+          placeholder="Enter category description"
+          rows="4"
+          formControlName="category_description"></textarea>
+        <p *ngIf="editCategoryForm.get('category_description')?.invalid && editCategoryForm.get('category_description')?.touched" value="category.category_name" class="text-red-500 text-xs italic">Please enter a category description.</p>
+      </div>
+    
+      <div class="flex justify-end items-center gap-x-2 py-3">
+        <button type="button" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-gray-100 text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50" [routerLink]="['/admindashboard/manage_categories']">
+          Back to Categories
+        </button>
+        <button type="submit" [disabled]="editCategoryForm.invalid" class="py-2 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700">
+          Save Changes
+        </button>
+      </div>
+    </form>
+  </div>
+  
