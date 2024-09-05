@@ -19,7 +19,7 @@
                     </button>
                   
                     <div class="hs-dropdown-menu transition-opacity duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 z-10 dark:bg-neutral-800 dark:border dark:border-neutral-700 dark:divide-neutral-700" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-products">
-                      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-neutral-700 hover:text-white dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300" href="#">
+                      <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-neutral-700 hover:text-white dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300" [routerLink]="['/admindashboard/manage-products']">
                         Add Product
                       </a>
                       <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-neutral-700 hover:text-white dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300" href="#">
@@ -66,23 +66,41 @@
     <!-- Main Content Area -->
     <div class="flex-1 flex flex-col overflow-hidden ">
         <!-- Top Navbar -->
-        <header class="bg-white shadow">
-            <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-              <div class="flex items-center">
-                <button type="button" class="text-gray-500 hover:text-gray-600 mr-4 lg:hidden" data-hs-overlay="#hs-offcanvas-example">
-                  <span class="sr-only">Toggle Navigation</span>
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                  </svg>
-                </button>
-                <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
-              </div>
-              <div class="flex items-center">
-                <span class="text-gray-700 mr-2">Welcome,</span>
-                <span class="font-semibold">John Doe</span>
-              </div>
-            </div>
-          </header>
+        <!-- Top Navbar -->
+<!-- Top Navbar -->
+<header class="bg-white shadow">
+  <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+      <div class="flex items-center">
+          <button type="button" class="text-gray-500 hover:text-gray-600 mr-4 lg:hidden" data-hs-overlay="#hs-offcanvas-example">
+              <span class="sr-only">Toggle Navigation</span>
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+          </button>
+          <h1 class="text-2xl font-semibold text-gray-900">Dashboard</h1>
+      </div>
+      <div class="hs-dropdown relative inline-flex">
+        <button id="hs-dropdown-with-icons" type="button" class="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+          Hi, {{ username }}
+          <svg class="hs-dropdown-open:rotate-180 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-1 space-y-0.5 mt-2 divide-y divide-gray-200 dark:bg-neutral-800 dark:border dark:border-neutral-700 dark:divide-neutral-700" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-with-icons">
+          <div class="py-2 first:pt-0 last:pb-0">
+            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700" href="#">
+              <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+              Profile
+            </a>
+            <a (click)="logout()" class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 cursor-pointer dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700">
+              <i class="bi bi-box-arrow-right"></i>
+              Logout
+            </a>
+          </div>
+        </div>
+      </div>
+  </div>
+</header>
+
+
 
         <!-- Page Content -->
         <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 rounded-lg lg:ml-64">

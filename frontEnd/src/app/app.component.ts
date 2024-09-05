@@ -8,12 +8,15 @@ import { SlideshowComponent } from './slideshow/slideshow.component';
 import { ProductsComponent } from './products/products.component';
 import { HeaderComponent } from './header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ImageSliderComponent } from './image-slider/image-slider.component';
 import { ManageCategoriesComponent } from './admindahboard/manage-categories/manage-categories.component';
 import { DashcardsComponent } from './admindahboard/dashcards/dashcards.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditCategoryComponent } from './admindahboard/edit-category/edit-category.component';
+import { ManageProductsComponent } from './admindahboard/products/manage-products/manage-products.component';
+import { AuthInterceptor } from './authinterceptor';
+import { EditProductComponent } from './admindahboard/products/edit-product/edit-product.component';
 declare global {
   interface Window {
     HSStaticMethods: IStaticMethods;
@@ -24,8 +27,10 @@ declare global {
   standalone:true,
   selector: 'app-root',
  
-  imports: [RouterOutlet, CarouselComponent, CategoriesComponent, ImageSliderComponent, RouterModule, ProductsComponent, HeaderComponent,  CommonModule, HttpClientModule, ManageCategoriesComponent, DashcardsComponent, ReactiveFormsModule, EditCategoryComponent],
-
+  imports: [RouterOutlet, CarouselComponent, CategoriesComponent, ImageSliderComponent, RouterModule, ProductsComponent, HeaderComponent,  CommonModule, HttpClientModule, ManageCategoriesComponent, DashcardsComponent, ReactiveFormsModule, EditCategoryComponent,ManageProductsComponent,EditProductComponent],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
   

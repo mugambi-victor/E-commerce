@@ -30,20 +30,40 @@ export class LoginComponent {
   }
  
   onSubmit(): void {
-    console.log(this.loginForm.value);
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.authService.login(email, password)
-        .subscribe((response: LoginResponse) => { // Specify the type of 'response' as LoginResponse
-          if (response.result === 'ok') {
-            const accessToken = response['Access Token'];
-            // Redirect or perform other actions
-            this.router.navigate(['admindashboard']); // Navigate to home page after successful login
-           
-            console.log(accessToken);
-          } else {
-            // Authentication failed, handle the error
-            console.log(response.result);
+        .subscribe({
+          next: (response) => {
+            if (response.result === 'ok') {
+              const accessToken = response['Access Token'];
+              localStorage.setItem('authToken', accessToken); // Store the token
+  
+              // Assuming the role information is part of the response
+              const userRole = response['role'];
+  
+              if (userRole === false) { // Check if the role is 'false' indicating admin
+                console.log('Redirecting to admin dashboard');
+                this.router.navigate(['admindashboard']).then(success => {
+                  if (success) {
+                    console.log('Navigation successful');
+                  } else {
+                    console.log('Navigation failed');
+                  }
+                });
+              } else {
+                console.log('User is not an admin');
+                // Handle non-admin user, e.g., redirect to a different page
+                this.router.navigate(['userdashboard']);
+              }
+            } else {
+              // Authentication failed, handle the error
+              console.log(response.result);
+            }
+          },
+          error: (error) => {
+            // Handle the error from the login request
+            console.error('Login error', error);
           }
         });
     } else {
@@ -51,5 +71,8 @@ export class LoginComponent {
       console.log(this.loginForm.value);
     }
   }
+  
+  
+  
   
 }

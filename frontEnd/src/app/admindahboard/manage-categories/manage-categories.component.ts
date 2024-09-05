@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CategoryService } from '../../category.service';
+import { CategoryService } from '../../services/category.service';
 import { CommonModule } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
 
@@ -60,8 +60,8 @@ export class ManageCategoriesComponent implements OnInit {
   loadCategories() {
     this.categoryService.getCategories().subscribe(
       data => {
+        console.log('Categories data:', data); // Log data to verify content
         this.categories = data;
-        console.log(data);
       },
       error => {
         console.error('Error fetching categories', error);

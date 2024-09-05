@@ -1,0 +1,187 @@
+<div class="container mx-auto px-4 py-8">
+    <!-- Success Alert -->
+    <div *ngIf="showSuccessAlert" class="space-y-5">
+      <div [ngClass]="{
+        'bg-teal-50 border-t-2 border-teal-500': alertType === 'success',
+        'bg-red-50 border-t-2 border-red-500': alertType === 'delete'
+      }" class="rounded-lg p-4 dark:bg-teal-800/30" role="alert" tabindex="-1">
+        <div class="flex">
+          <div class="shrink-0">
+            <span [ngClass]="{
+              'border-teal-100 bg-teal-200 text-teal-800': alertType === 'success',
+              'border-red-100 bg-red-200 text-red-800': alertType === 'delete'
+            }" class="inline-flex justify-center items-center size-8 rounded-full border-4">
+              <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </span>
+          </div>
+          <div class="ms-3">
+            <h3 class="text-gray-800 font-semibold dark:text-white">
+              {{ alertTitle }}
+            </h3>
+            <p class="text-sm text-gray-700 dark:text-neutral-400">
+              {{ successMessage }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    
+    <!-- The rest of your manage products template -->
+    
+  
+    <!-- Modal -->
+    <div id="add-Product-modal" class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none" role="dialog" tabindex="-1" aria-labelledby="add-Product-modal-label">
+      <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all md:max-w-2xl md:w-full m-3 md:mx-auto">
+        <div class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
+          <div class="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">
+            <h3 id="add-Product-modal-label" class="font-bold text-gray-800 dark:text-white">
+              Add New Product
+            </h3>
+            <button type="button" class="size-8 inline-flex justify-center items-center gap-x-2 rounded-full border border-transparent bg-gray-100 text-gray-800 hover:bg-gray-200 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:hover:bg-neutral-600 dark:text-neutral-400 dark:focus:bg-neutral-600" aria-label="Close" data-hs-overlay="#add-Product-modal">
+              <span class="sr-only">Close</span>
+              <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 6 6 18"></path>
+                <path d="m6 6 12 12"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="p-4 overflow-y-auto">
+            <form [formGroup]="ProductForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="categoryName">
+                  Product Category
+                </label>
+                <select 
+                  formControlName="categoryId"
+                  class="py-3 px-4 pe-9 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                  <option value="" disabled>Select Category</option>
+                  <option *ngFor="let category of categories" [value]="category.category_name">{{ category.category_name }}</option>
+                </select>
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="categoryName">
+                  Product Name
+                </label>
+                <input 
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                  id="categoryName" 
+                  type="text" 
+                  placeholder="Enter Product name"
+                  formControlName="name">
+                <p *ngIf="ProductForm.get('name')?.invalid && ProductForm.get('name')?.touched" class="text-red-500 text-xs italic">Please enter a Product name.</p>
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="categoryDescription">
+                  Product Description
+                </label>
+                <textarea 
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
+                  id="categoryDescription" 
+                  placeholder="Enter Product description"
+                  rows="4"
+                  formControlName="description"></textarea>
+                <p *ngIf="ProductForm.get('description')?.invalid && ProductForm.get('description')?.touched" class="text-red-500 text-xs italic">Please enter a Product description.</p>
+              </div>
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="productImage">
+                  Product Image
+                </label>
+                <input 
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                  id="productImage" 
+                  type="file" 
+                  (change)="onFileChange($event)"
+                  accept="image/*">
+                <p *ngIf="fileError" class="text-red-500 text-xs italic">{{ fileError }}</p>
+              </div>
+            
+              <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="categoryName">
+                  Product Price
+                </label>
+                <input 
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                  id="product_price" 
+                  type="number" 
+                  placeholder="Product price" 
+                  formControlName="product_price">
+                <p *ngIf="ProductForm.get('product_price')?.invalid && ProductForm.get('product_price')?.touched" class="text-red-500 text-xs italic">Please enter a valid price.</p>
+              </div>
+              <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="categoryName">
+                  Available Stock
+                </label>
+                <input 
+                  class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
+                  id="stock" 
+                  type="number" 
+                  placeholder="Enter Items Available for this product" 
+                  formControlName="stock">
+                <p *ngIf="ProductForm.get('stock')?.invalid && ProductForm.get('stock')?.touched" class="text-red-500 text-xs italic">Please enter a valid amount.</p>
+              </div>
+              <div class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
+                <button type="button" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-700 dark:focus:bg-neutral-700" data-hs-overlay="#add-Product-modal">
+                  Close
+                </button>
+                <button type="submit"  class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+                  Add Product
+                </button>
+              </div>
+            </form>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  
+    <!-- Existing Products Table -->
+     <div class="flex justify-between">
+       <!-- Button to open modal -->
+       <h2 class="text-2xl font-semibold mb-6">Existing Products</h2>
+     <button type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none mb-6" data-hs-overlay="#add-Product-modal">
+      Add New Product
+    </button>
+     </div>
+    
+    <div class="flex flex-col">
+      <div class="-m-1.5 overflow-x-auto">
+        <div class="p-1.5 min-w-full inline-block align-middle">
+          <div class="border rounded-lg overflow-hidden dark:border-neutral-700">
+            <table class="min-w-full divide-y divide-gray-200 dark:divide-neutral-700 bg-white">
+              <thead>
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Name</th>
+                  <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Description</th>
+                  <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Category</th>
+                  <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Price (Kshs)</th>
+                  <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Available Stock</th>
+                  <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200 dark:divide-neutral-700">
+                <tr *ngFor="let product of products">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">{{ product.product_name }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ product.product_description }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ product.category_name }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ product.product_price }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">{{ product.stock }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium flex gap-4">
+                    <button type="button"  (click)="onEdit(product._id)" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-none focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400"  title="Edit Product"><i class="bi bi-pencil-square"></i></button>
+                    <button type="button" (click)="deleteProduct(product._id)" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-none focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400 dark:focus:text-blue-400" title="Delete Product"><i class="bi bi-trash3-fill"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  

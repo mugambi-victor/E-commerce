@@ -1,40 +1,32 @@
 <?php
 
+use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
- Route::post('register', 'App\Http\Controllers\AuthenticationController@register')->name('register');
+Route::post('register', 'App\Http\Controllers\AuthenticationController@register')->name('register');
 Route::post('login', 'App\Http\Controllers\AuthenticationController@login')->name('login');
 
-//All routes require that they be authenticated via sanctum authentication.
+// Routes requiring authentication
 Route::middleware('auth:sanctum')->group(function () {
-    // Route::resource('categories', CategoryController::class);
-    Route::resource('products', ProductController::class)->only([
-         'show', 'index'
-     ]);
+    // In routes/api.php or routes/web.php
+Route::post('/products/{id}/update', [ProductController::class, 'update']);
+
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    })->name('user');
+    // Protect category routes
+
+    Route::resource('categories', CategoryController::class);
+    
+    // Protect product routes with both 'auth' and 'admin' middleware
+    Route::middleware('admin')->group(function () {
+        Route::resource('products', ProductController::class);
+    });
 });
-Route::resource('categories', CategoryController::class);
-Route::middleware('admin')->group(function () {
-   
-    Route::resource('products', ProductController::class)->only([
-        'destroy', 'store', 'update'
-     ]);
-});
+Route::middleware('auth:sanctum')->post('logout', [AuthenticationController::class, 'logout'])->name('logout');
+
+// Public routes
 Route::get('/categories/{id}', [CategoryController::class, 'getCategoryById']);

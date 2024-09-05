@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use MongoDB\Laravel\Eloquent\Model;
 
-class User extends Model
+class User extends  Model
 {
     use HasApiTokens, HasFactory, Notifiable;
      protected $connection = 'mongodb';

@@ -6,6 +6,9 @@ import { IndexPageComponent } from './admindahboard/index-page/index-page.compon
 import { ManageCategoriesComponent } from './admindahboard/manage-categories/manage-categories.component';
 import { DashcardsComponent } from './admindahboard/dashcards/dashcards.component';
 import { EditCategoryComponent } from './admindahboard/edit-category/edit-category.component';
+import { ManageProductsComponent } from './admindahboard/products/manage-products/manage-products.component';
+import { AuthGuard } from './auth.guard'; // Adjust the path as necessary
+import { EditProductComponent } from './admindahboard/products/edit-product/edit-product.component';
 
 export const routes: Routes = [
     {
@@ -18,19 +21,20 @@ export const routes: Routes = [
     },
     {
         path: 'categories',
-        component: CategoriesComponent
+        component: CategoriesComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: 'admindashboard',
         component: IndexPageComponent,
+        canActivate: [AuthGuard], // Apply AuthGuard here to protect the parent route
         children: [
             { path: 'manage_categories', component: ManageCategoriesComponent },
-            { path: '', component: DashcardsComponent },
+            { path: '', component: DashcardsComponent }, // Default child route
             { path: 'edit-category/:id', component: EditCategoryComponent },
+            { path: 'manage-products', component: ManageProductsComponent },
+            {path: 'edit-product/:id', component: EditProductComponent },
             // Add more child routes here
           ]
     }
-  
-    
-    
 ];
