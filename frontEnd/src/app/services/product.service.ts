@@ -12,12 +12,15 @@ export class ProductService {
 
   getProducts(): Observable<any> {
     const token = localStorage.getItem('authToken');
-    console.log("here is tjhe token",token);
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<any>(this.apiUrl, { headers });
+    return this.http.get<any>(`${this.apiUrl}`, { headers });
+  }
+
+  getApiUrl(): string {
+    return this.apiUrl;
   }
   addProduct(product: any): Observable<any> {
     const token = localStorage.getItem('authToken');

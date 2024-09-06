@@ -1,7 +1,16 @@
+<div class="grid grid-cols-12 gap-4 md:mx-16 sm:mx-8 xsm:mx-4 lg:mx-24">
+  <div class="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 col-start-13 sm:col-start-7 md:col-start-9 lg:col-start-10">
+    <div class="hs-dropdown relative inline-flex w-full">
+      <button id="hs-dropdown-default" type="button" class="hs-dropdown-toggle py-3 px-6 inline-flex items-center justify-between gap-x-2 text-sm font-medium rounded-lg border border-gray-200 text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none w-full" aria-haspopup="menu" aria-expanded="false" aria-label="Dropdown">
+        <span class="truncate">Categories</span>
+        <svg class="hs-dropdown-open:rotate-180 size-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
 
-<div class="category-container flex justify-center gap-4 mt-4 overflow-x-auto">
-    <button class="category-button bg-[#DE9510] py-2 px-8 rounded-full text-white whitespace-nowrap" *ngFor="let category of categories">
-      {{ category.category_name }}
-    </button>
+      <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-[15rem] shadow-md rounded-lg p-1 space-y-0.5 mt-2 bg-gray-800 absolute z-50 w-1/4 right-0" role="menu" aria-orientation="vertical" aria-labelledby="hs-dropdown-default">
+        <a *ngFor="let category of categories" class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-100 hover:bg-gray-700 focus:outline-none focus:bg-gray-700" [href]="category.link">
+          {{ category.category_name }}
+        </a>
+      </div>
+    </div>
   </div>
-  
+</div>

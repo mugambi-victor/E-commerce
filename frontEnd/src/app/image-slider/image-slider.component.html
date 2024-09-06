@@ -2,42 +2,51 @@
 <div data-hs-carousel='{
   "loadingClasses": "opacity-0",
   "isAutoPlay": true
-}' class="relative">
-  <div class="hs-carousel relative overflow-hidden w-full h-64 sm:h-80 md:h-96 mt-0  bg-white rounded-lg">
+}' class="relative bg-white mb-6 ">
+  <div class="hs-carousel relative overflow-hidden w-full h-[50vh] mt-0  ">
     <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap  transition-transform duration-1000 opacity-0 duration-1000 ease-in-out">
       
       <!-- Slide 1 -->
       <div class="relative hs-carousel-slide">
-        <div class="flex justify-center items-center h-full bg-gray-100 px-6 dark:bg-neutral-900">
-          <div class="inner relative w-full md:w-1/2 h-full bg-cover bg-center" style="background-image: url('../assets/img/ecomm.jpg');">
-            <div class="absolute bottom-0 rounded-md left-0 p-2 sm:p-4 bg-black bg-opacity-50 text-white transition-opacity duration-300 ease-in-out transform">
-              <h2 class="text-base sm:text-lg font-semibold">Your Overlay Text Here</h2>
-              <p class="text-xs sm:text-sm">Additional description or content</p>
-            </div>
+        <div class="flex flex-col md:flex-row justify-center items-center h-[46vh]">
+          <!-- Left Card -->
+          <div class="w-full md:w-1/2 bg-white shadow-lg rounded-lg px-4 flex flex-col h-full justify-center items-center text-center p-4">
+            <h3 class="text-2xl md:text-5xl font-semibold mb-2 px-2 md:px-6 dis">Welcome to Mugambi's Products App. For your everyday shopping and shipping.</h3>
+            <!-- <p class="text-base">Content for the left card goes here. This can be some descriptive text or information.</p> -->
+          </div>
+          <!-- Image -->
+          <div class="w-full md:w-1/2 h-full">
+            <img src="../assets/img/ecomm.jpg" alt="Image description" class="w-[90%] h-full object-cover  rounded-md">
           </div>
         </div>
       </div>
+      
 
       <!-- Slide 2 -->
       <div class="relative hs-carousel-slide">
-        <div class="flex justify-center items-center h-full bg-gray-100 px-6 dark:bg-neutral-900">
-          <div class="inner relative w-full md:w-1/2 h-full bg-cover bg-center" style="background-image: url('../assets/img/delivery1.png');">
-            <div class="absolute bottom-0 rounded-md left-0 p-2 sm:p-4 bg-black bg-opacity-50 text-white transition-opacity duration-300 ease-in-out transform">
-              <h2 class="text-base sm:text-lg font-semibold">Your Overlay Text Here</h2>
-              <p class="text-xs sm:text-sm">Additional description or content</p>
-            </div>
+        <div class="flex flex-col md:flex-row justify-center items-center h-[46vh]">
+          <!-- Left Card -->
+          <div class="w-full md:w-1/2 bg-white shadow-lg rounded-lg px-4 flex flex-col h-full justify-center items-center text-center p-4">
+            <h3 class="text-2xl md:text-5xl font-semibold mb-2 px-2 md:px-6 dis">Deliveries made country wide within 4 business days.</h3>
+            <!-- <p class="text-base">Content for the left card goes here. This can be some descriptive text or information.</p> -->
+          </div>
+          <!-- Image -->
+          <div class="w-full md:w-1/2 h-full">
+            <img src="../assets/img/deliveries.png" alt="Image description" class="w-[90%] h-full object-cover rounded-md">
           </div>
         </div>
       </div>
-
       <!-- Slide 3 -->
       <div class="relative hs-carousel-slide">
-        <div class="flex justify-center items-center h-full bg-gray-100 px-6 dark:bg-neutral-900">
-          <div class="inner relative w-full md:w-1/2 h-full bg-cover bg-center" style="background-image: url('../assets/img/ecomm.jpg');">
-            <div class="absolute bottom-0 rounded-md left-0 p-2 sm:p-4 bg-black bg-opacity-50 text-white transition-opacity duration-300 ease-in-out transform">
-              <h2 class="text-base sm:text-lg font-semibold">Your Overlay Text Here</h2>
-              <p class="text-xs sm:text-sm">Additional description or content</p>
-            </div>
+        <div class="flex flex-col md:flex-row justify-center items-center h-[46vh]">
+          <!-- Left Card -->
+          <div class="w-full md:w-1/2 bg-white shadow-lg rounded-lg px-4 flex flex-col h-full justify-center items-center text-center p-4">
+            <h3 class="text-2xl md:text-5xl font-semibold mb-2 px-2 md:px-6 dis">Explore crazy deals this Weekend. </h3>
+            <!-- <p class="text-base">Content for the left card goes here. This can be some descriptive text or information.</p> -->
+          </div>
+          <!-- Image -->
+          <div class="w-full md:w-1/2 h-full">
+            <img src="../assets/img/ecomm.jpg" alt="Image description" class="w-[90%] h-full object-cover rounded-md">
           </div>
         </div>
       </div>
@@ -65,7 +74,7 @@
   </button>
 
   <!-- Pagination -->
-  <div class="hs-carousel-pagination flex justify-center absolute bottom-1 sm:bottom-3 start-0 end-0 space-x-1 sm:space-x-2">
+  <div class="hs-carousel-pagination flex justify-center pt-4 absolute bottom-0 sm:bottom-3 start-0 end-0 space-x-1 sm:space-x-2">
     <span class="hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-2 sm:size-3 border border-gray-400 rounded-full cursor-pointer dark:border-neutral-600 dark:hs-carousel-active:bg-blue-500 dark:hs-carousel-active:border-blue-500"></span>
     <span class="hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-2 sm:size-3 border border-gray-400 rounded-full cursor-pointer dark:border-neutral-600 dark:hs-carousel-active:bg-blue-500 dark:hs-carousel-active:border-blue-500"></span>
     <span class="hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-2 sm:size-3 border border-gray-400 rounded-full cursor-pointer dark:border-neutral-600 dark:hs-carousel-active:bg-blue-500 dark:hs-carousel-active:border-blue-500"></span>

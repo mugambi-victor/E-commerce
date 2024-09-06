@@ -89,7 +89,7 @@ class ProductController extends Controller
             $imagePath = $request->file('product_image')->store('public/images');
     
             // Remove 'public/' from the file path to save the relative path
-            $imagePath = str_replace('public/', '', $imagePath);
+            $imagePath = str_replace('public/images/', '', $imagePath);
         }
     
         // Save the product information along with the image path
@@ -194,7 +194,7 @@ class ProductController extends Controller
             $path = $request->file('product_image')->store('public/images');
     
             // Save the relative file path in the database (remove 'public/' prefix)
-            $product->product_image = str_replace('public/', '', $path);
+            $product->product_image = str_replace('public/images/', '', $path);
         }
         
     

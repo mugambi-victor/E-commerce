@@ -1,7 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild, ChangeDetectorRef, NgZone } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild, ChangeDetectorRef, NgZone, OnInit } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
+import { ProductService } from '../services/product.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-products',
@@ -10,14 +12,24 @@ import { CommonModule } from '@angular/common';
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
-export class ProductsComponent implements AfterViewInit, OnDestroy {
+export class ProductsComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('cardContainer') cardContainer!: ElementRef;
-  
+
   showLeftArrow = false;
   showRightArrow = true;
   private scrollSubscription!: Subscription;
+  categories: any[] = [];  // Array to hold categories and their products
 
-  constructor(private cdr: ChangeDetectorRef, private ngZone: NgZone) {}
+  constructor(
+    private cdr: ChangeDetectorRef, 
+    private ngZone: NgZone,
+    private productService: ProductService,
+    private sanitizer: DomSanitizer
+  ) {}
+
+  ngOnInit() {
+    this.loadProducts();
+  }
 
   ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => {
@@ -40,6 +52,40 @@ export class ProductsComponent implements AfterViewInit, OnDestroy {
     if (this.scrollSubscription) {
       this.scrollSubscription.unsubscribe();
     }
+  }
+
+  loadProducts() {
+    this.productService.getProducts().subscribe({
+      next: (data) => {
+        // Group products by category
+        const grouped = data.reduce((acc: any, product: any) => {
+          const category = product.category_name; // Assumes each product has a category_name property
+          if (!acc[category]) {
+            acc[category] = [];
+          }
+          acc[category].push({
+            ...product,
+            safeImageUrl: this.getSafeImageUrl(product.product_image)
+          });
+          return acc;
+        }, {});
+
+        this.categories = Object.keys(grouped).map(categoryName => ({
+          category_name: categoryName,
+          products: grouped[categoryName]
+        }));
+        this.cdr.detectChanges();
+      },
+      error: (error) => {
+        console.error('Error fetching products:', error);
+      }
+    });
+  }
+
+  getSafeImageUrl(imagePath: string): SafeUrl {
+    // Construct the full URL to the image in Laravel's public storage
+    const fullImageUrl = `http://localhost:9000/storage/images/${imagePath}`;
+    return this.sanitizer.bypassSecurityTrustUrl(fullImageUrl);
   }
 
   scrollLeft() {

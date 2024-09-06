@@ -1,51 +1,37 @@
-
-
-
-.nowrap {
-    width: 150px;
-    text-wrap: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-   
-   
-}
-
-@media(max-width:1252px){
-    .scroll-container {
-        overflow-x: auto; /* Enable horizontal scrolling */
-        white-space: nowrap; /* Prevent cards from wrapping */
-    }
-    
-    
-    .card {
-        flex: 0 0 auto; /* Maintain the original size of the cards */
-        margin-right: 1em;
-    }
-}
-.card{
-    width:200px;
+/* Ensure the first card is visible */
+.products-container {
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-left: 50px; /* Adjust this value based on your button width */
+    margin-left: -50px; /* This offsets the padding so the content aligns properly */
+  }
   
-}
-
-
-@media(max-width:767px){
-    .scroll-container{
-        justify-content: center;
+  .card {
+    width: 200px;
+    flex: 0 0 auto; /* Maintain the original size of the cards */
+  }
+  
+  .scroll-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent cards from wrapping */
+  }
+  
+  @media (max-width: 767px) {
+    .scroll-container {
+      justify-content: center;
     }
-    
-        /* .card{
-            width:80%;
-            margin:0;
-        } */
-    
-}
-.description {
+  }
+  
+  .description {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  
   .card-container {
     scroll-behavior: smooth;
     -ms-overflow-style: none;  /* IE and Edge */
@@ -55,3 +41,4 @@
   .card-container::-webkit-scrollbar {
     display: none;  /* Chrome, Safari and Opera */
   }
+  

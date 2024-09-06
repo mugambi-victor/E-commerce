@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -75,13 +76,26 @@ public function update(Request $request, $id)
         'category_description' => 'required|string',
     ]);
 
+    // Store the old category name for updating related products
+    $oldCategoryName = $category->category_name;
+
     // Update the category details
     $category->category_name = $request->category_name;
     $category->category_description = $request->category_description;
     $category->save();
 
+    // Update products that are using the old category name
+    if ($oldCategoryName !== $request->category_name) {
+        $products = Product::where('category_name', $oldCategoryName)->get();
+        foreach ($products as $product) {
+            $product->category_name = $request->category_name;
+            $product->save();
+        }
+    }
+
     return response()->json(['result' => 'ok', 'category' => $category], 200);
 }
+ 
 
 
 }

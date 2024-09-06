@@ -65,7 +65,7 @@ export class EditProductComponent implements OnInit {
             product_price: product.product_price,
             stock: product.stock
           });
-          this.imagePreview = `http://localhost:9000/storage/${product.product_image}`;
+          this.imagePreview = `http://localhost:9000/storage/images/${product.product_image}`;
 
 console.log("The image URL is", this.imagePreview);
         },
